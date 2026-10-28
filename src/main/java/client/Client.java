@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Random;
 import java.util.function.Consumer;
 
 public class Client {
@@ -20,7 +21,8 @@ public class Client {
         Thread.startVirtualThread(() -> {
             try {
                 outToServer = new DataOutputStream(serverSocket.getOutputStream());
-                outToServer.writeInt(1);
+                final int randomInt = new Random().nextInt();
+                outToServer.writeInt(randomInt);
 
                 inFromServer = new DataInputStream(serverSocket.getInputStream());
 

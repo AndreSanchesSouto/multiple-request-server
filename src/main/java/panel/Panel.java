@@ -22,6 +22,8 @@ public class Panel {
         String[] column = {"Cliente", "Status / Resposta"};
         DefaultTableModel model = new DefaultTableModel(column, 0);
         JTable table = new JTable(model);
+        table.getTableHeader().setReorderingAllowed(false);
+        table.setEnabled(false);
         JScrollPane scrollPane = new JScrollPane(table);
 
         JPanel panel = new JPanel();
@@ -53,6 +55,12 @@ public class Panel {
                 });
 
             } catch (IOException e) {
+                JOptionPane.showMessageDialog(
+                        frame,
+                        "Erro ao processar dados: " + e.getMessage(),
+                        "Erro no Sistema",
+                        JOptionPane.ERROR_MESSAGE
+                );
                 throw new RuntimeException(e);
             }
         });
